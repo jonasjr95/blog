@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/login.css">
+  <link href="{{URL::asset('css/login.css') }}" rel="stylesheet">
 </head>
 <body>
   <main>
@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-sm-6 login-section-wrapper">
           <div class="brand-wrapper">
-            <img src="assets/images/logo.svg" alt="logo" class="logo">
+            <img src="{{URL::asset('images/logo.svg')}}">
           </div>
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Entrar</h1>
@@ -30,14 +30,14 @@
                 <label for="password">Senha</label>
                 <input type="password" name="senha" id="senha" placeholder="digite sua senha"  required="required">
               </div>
-              <button type="submit" class="btn btn-primary btn-block btn-large">Entrar.</button>
+              <button type="submit" class="btn btn-primary btn-block btn-large">Entrar</button>
             </form>
             <a href="#!" class="forgot-password-link">Esqueceu a senha?</a>
             <p class="login-wrapper-footer-text">Não possui uma conta? <a href="#!" class="text-reset">Cadastre aqui</a></p>
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="assets/images/login.jpg" alt="login image" class="login-img">
+          <img src="{{URL::asset('images/login.jpg')}}">
         </div>
       </div>
     </div>
