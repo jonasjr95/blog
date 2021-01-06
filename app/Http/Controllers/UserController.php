@@ -7,29 +7,32 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     public function login(Request $request){
         
         $CPF = $request->CPF;
         $senha = $request->senha;
 
-        $usuarios = usuario::where('CPF', '=', $CPF)->where('senha', '=', $senha)->first();
+        $usuarios = Usuario::where('CPF', '=', $CPF)->where('senha', '=', $senha)->first();
         
         if(@$usuarios->CPF != null){
+            
             @session_start();
             $_SESSION['CPF_usuario'] = $usuarios->CPF;
             $_SESSION['nome_usuario'] = $usuarios->nome;
-            $_SESSION['nivel_usuario'] = $usuarios->nivel;
+            $_SESSION['nivel_usuario'] = $usuarios->perfil;
             
-            if($_SESSION['nivel_usuario'] == 'adminS'){
-                return view('painel-ADMS.Index');
-            }
+            $pagina = $_SESSION['nivel_usuario']."/painel.Index";
+            return view($pagina);
+
+          
             if($_SESSION['nivel_usuario'] == 'admin'){
                 return view('painel-ADM.Index');
             }
             if($_SESSION['nivel_usuario'] == 'atleta'){
                 return view('painel-Atleta.Index');
             }if($_SESSION['nivel_usuario'] == 'c.time'){
-                return view('painel-C.time.Index');
+                return view('painel-C-Time.Index');
             }if($_SESSION['nivel_usuario'] == 'com.tecnica'){
                 return view('painel-Com.Tecnica.Index');
             }if($_SESSION['nivel_usuario'] == 'c.competição'){
@@ -48,4 +51,19 @@ class UserController extends Controller
         @session_destroy();
         return view('Index');
      }
+
+//Pág do formurário de usuário
+    public function novo(){
+        return view('usuario.form');
+    }
+
+//Inserir usuario no banco 
+    public function inserir(Request $request){
+
+        $usuario = new usuario();
+        $usuario = $usuario->create( $request->all() );
+
+        return view('Index');
+    }
+
 }
